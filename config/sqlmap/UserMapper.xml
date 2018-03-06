@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+
+	<select id="findUserById" parameterType="java.lang.Integer" resultType="com.mybatis.pojo.User">
+		select
+		* from user where id=#{id}
+	</select>
+
+	<select id="findUserByName" parameterType="java.lang.String"
+		resultType="com.mybatis.pojo.User">
+		 select * from user where username like '%${value}'
+		<!-- select * from user where username like concat('%',#{value},'%') -->
+		
+	</select>
+
+<insert id="addUser" parameterType="com.mybatis.pojo.User">insert into user(userName,sex,birthday,address) value(#{userName},#{sex},#{birthDay},#{address})
+</insert>
+
+<delete id="deluser" parameterType="java.lang.Integer">
+delete from user where id=#{id}
+</delete>
+
+<update id="updateuser" parameterType="com.mybatis.pojo.User">
+update user set sex=#{sex} where id=#{id}
+</update>
+
+</mapper>
